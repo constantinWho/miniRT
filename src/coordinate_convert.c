@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:11:46 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/04 18:10:22 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:22:43 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int ft_convert_coordinate(t_data *data, char *width, char *height)
     figure->width = ft_atoi(width);
     figure->height = ft_atoi(height);
     img->image = mlx_new_image(data->window, figure->width, figure->height);
+    if (!img->image || (mlx_image_to_window(data->window, img->image, 0, 0) < 0))
+        return (FALSE);
     figure->centerX = figure->width / 2;
     figure->centerY = figure->height / 2;
 
@@ -40,7 +42,12 @@ int ft_convert_coordinate(t_data *data, char *width, char *height)
     data->figure = figure;
     data->screen = screen;
     data->img = img;
-    ft_put_on_screen(data);
+    for (int y = 0; y < figure->width; y++) {
+        for (int x = 0; x < figure->height; x++) {
+            mlx_put_pixel(data->img->image, x, y, 0xFF0000FF); // Set each pixel to red (0xFF0000FF)
+        }
+    }
+    //ft_put_on_screen(data);
     return (TRUE);
 }
 

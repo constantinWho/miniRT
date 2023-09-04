@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:53:53 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/04 18:03:22 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:22:02 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ int main(int ac, char **av) //put size for square
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
+
+/* 	// Create and display the image.
+	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
+	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+		ft_error();
+
+	// Even after the image is being displayed, we can still modify the buffer.
+	x_put_pixel(img, 0, 0, 0xFF0000FF); */
     ft_convert_coordinate(data, av[1], av[2]);
     mlx_loop(data->window);
     mlx_terminate(data->window);
