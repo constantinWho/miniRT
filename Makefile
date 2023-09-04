@@ -2,12 +2,14 @@ NAME	:= miniRT
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= ./lib/MLX42
 
+LIBFT_DIR 			:= lib/libft
+LIBFT	:= $(LIBFT_DIR)/libft.a
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= $(shell find ./src -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
-all: libmlx $(NAME)
+all: libmlx libft $(NAME)
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -16,9 +18,17 @@ libmlx:
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME) $(LIBFT)
 
-clean:
+libft:
+	@echo "Building libft library"
+	@cd $(LIBFT_DIR) && make all
+
+libft_clean:
+	@echo "Cleaning libft objects"
+	@cd $(LIBFT_DIR) && make clean
+
+clean: libft_clean
 	@rm -rf $(OBJS)
 	@rm -rf $(LIBMLX)/build
 
