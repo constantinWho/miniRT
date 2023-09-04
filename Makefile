@@ -1,4 +1,4 @@
-NAME	:= Game
+NAME	:= miniRT
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= ./lib/MLX42
 
