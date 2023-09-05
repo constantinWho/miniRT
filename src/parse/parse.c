@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 15:49:37 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/05 12:56:15 by mparasku         ###   ########.fr       */
+/*   Created: 2023/09/05 12:50:17 by mparasku          #+#    #+#             */
+/*   Updated: 2023/09/05 13:07:35 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-#define MINIRT_H
+#include "../../include/miniRT.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include "../lib/MLX42/include/MLX42/MLX42.h"
-#include "../lib/libft/libft.h"
-#include "structs.h"
-#include "functions.h"
+int	ft_parse(char *file)
+{
+	int	fd;
 
-#define WIDTH 1000
-#define HEIGHT 800
-#define FALSE 0
-#define TRUE 1
+	if (ft_check_extention(file) == FALSE)
+		return (-1);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (ft_error("File opening failed"));
+	return (TRUE);
+}
 
-
-
-#endif
+int ft_check_extention(char *file)
+{
+	if (ft_str_ends_with(file, ".rt") != 0)
+	{
+		ft_error("Wrong extention");
+		return (FALSE);
+	}
+	return (TRUE);
+}
