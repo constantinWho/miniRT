@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:53:53 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/05 16:07:17 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:39:24 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	main(int ac, char **av)
 	if (!ft_parse(av[1], rt))
 		return (-1);
 
-	//ft_free_rt(rt);
+	ft_free_rt(rt);
 	return (0);
 }

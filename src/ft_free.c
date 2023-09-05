@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:53:23 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/05 16:00:35 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:39:36 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void ft_free_rt(t_rt *rt)
 {
+	free(rt->scene);
 	free(rt);
 }

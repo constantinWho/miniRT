@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:50:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/05 16:11:36 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:45:36 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,17 @@ int ft_parse(char *file, t_rt *rt)
 	rt = malloc(sizeof(t_rt));
 	if (!rt) 
 		return(ft_error("rt struct allocation failed"));
+	rt->scene = malloc(sizeof(t_scene));
+	if (!rt->scene)
+		return(ft_error("rt->scene struct allocation failed"));
+	rt->scene->ambiant = NULL;
+	rt->scene->camera = NULL;
+	rt->scene->light = NULL;
+	
 	return (TRUE);
 }
+
+
 
 int	ft_file_check(char *file)
 {
