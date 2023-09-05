@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:11:46 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/04 18:22:43 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:57:22 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int ft_convert_coordinate(t_data *data, char *width, char *height)
 
     figure->width = ft_atoi(width);
     figure->height = ft_atoi(height);
-    img->image = mlx_new_image(data->window, figure->width, figure->height);
+    img->image = mlx_new_image(data->window, WIDTH, HEIGHT);
     if (!img->image || (mlx_image_to_window(data->window, img->image, 0, 0) < 0))
         return (FALSE);
     figure->centerX = figure->width / 2;
@@ -42,12 +42,12 @@ int ft_convert_coordinate(t_data *data, char *width, char *height)
     data->figure = figure;
     data->screen = screen;
     data->img = img;
-    for (int y = 0; y < figure->width; y++) {
+/*     for (int y = 0; y < figure->width; y++) {
         for (int x = 0; x < figure->height; x++) {
             mlx_put_pixel(data->img->image, x, y, 0xFF0000FF); // Set each pixel to red (0xFF0000FF)
         }
-    }
-    //ft_put_on_screen(data);
+    } */
+    ft_put_on_screen(data);
     return (TRUE);
 }
 
@@ -55,9 +55,9 @@ void ft_put_on_screen(t_data *data)
 {
     int figX, figY, screenX, screenY;
     
-    for (figY = 0; figY < data->figure->height; figY++)
+    for (figY = -100; figY < data->figure->height; figY++)
     {
-        for (figX = 0; figX < data->figure->width; figX++)
+        for (figX = -100; figX < data->figure->width; figX++)
         {
             // Calculate screen coordinates for each pixel of the square
             screenX = data->screen->centerX + (figX - data->figure->centerX);
