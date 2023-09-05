@@ -26,7 +26,7 @@ libft:
 
 libft_clean:
 	@echo "Cleaning libft objects"
-	@cd $(LIBFT_DIR) && make clean
+	@cd $(LIBFT_DIR) && make fclean
 
 clean: libft_clean
 	@rm -rf $(OBJS)
