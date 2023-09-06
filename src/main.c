@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:53:53 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/05 16:39:24 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:40:43 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	main(int ac, char **av)
 		ft_putstr_fd("\033[31m ./miniRT [scenes]\n\033[0m", 2);
 		return (-1);
 	}
-	if (!ft_file_check(av[1]))
-		return(-1);
 	if (!ft_parse(av[1], rt))
+		return(-1);
+	/* if (!ft_parse(av[1], rt))
 		return (-1);
-
+ */
 	ft_free_rt(rt);
 	return (0);
 }
