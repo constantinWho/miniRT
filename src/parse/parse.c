@@ -6,18 +6,20 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:50:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/06 12:45:08 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:30:45 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/miniRT.h"
 
-int ft_parse(char *file, t_rt *rt)
+t_rt *ft_parse(char *file, t_rt *rt)
 {
-	rt = malloc(sizeof(t_rt));
 	if (!ft_file_validation(file))
-		return (FALSE);
-	return (TRUE);	
+		return (NULL);
+	if (!ft_init_parse_rt(&rt))
+		return (NULL);
+	printf("%s\n", rt->scene->light.id);
+	return (rt);	
 }
 
 int	ft_file_validation(char *file)
@@ -26,7 +28,7 @@ int	ft_file_validation(char *file)
 	
 	if (ft_check_extention(file) == FALSE)
 		return (FALSE);
-	file_str= ft_file_to_str(file);
+	file_str = ft_file_to_str(file);
 	if (!file_str)
 		return (FALSE);
 	if (file_str[0] == '\0')
@@ -34,7 +36,6 @@ int	ft_file_validation(char *file)
 		free(file_str);
 		return (ft_error("File is empty"));
 	}
-	printf("%s\n", file_str);
 	free(file_str);
 	return (TRUE);
 }

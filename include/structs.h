@@ -3,6 +3,7 @@
 
 #include "miniRT.h"
 
+
 typedef struct s_color
 {
 	int	r;
