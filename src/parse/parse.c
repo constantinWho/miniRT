@@ -6,20 +6,58 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:50:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/06 13:30:45 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:51:20 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/miniRT.h"
 
-t_rt *ft_parse(char *file, t_rt *rt)
+int ft_parse(char *file, t_rt **rt)
 {
+	int index;
+	int fd;
+
+	index = 0;
 	if (!ft_file_validation(file))
-		return (NULL);
-	if (!ft_init_parse_rt(&rt))
-		return (NULL);
-	printf("%s\n", rt->scene->light.id);
-	return (rt);	
+		return (FALSE);
+	if (!ft_init_parse_rt(rt))
+		return (FALSE);
+	fd = open(file, O_RDONLY);
+	if(!ft_fill_structs(fd, rt, index))
+	{
+		close (fd);
+		return (FALSE);
+	}
+	//printf("%s\n", (*rt)->scene->ambient.id);
+	close(fd);
+	return (TRUE);
+}
+
+int	ft_fill_structs(int fd, t_rt **rt, int index)
+{
+	char *line;
+	int error_flag;
+
+	line = get_next_line(fd);
+	error_flag = FALSE;
+	while (line)
+	{
+		if (ft_strncmp(line, "A ", 2) == 0)
+			if (!ambient_light_parse(line, rt))
+				error_flag = TRUE;
+/* 		else if (ft_strncmp(line, "C ", 2) == 0)
+		else if (ft_strncmp(line, "L ", 2) == 0)
+		else if (ft_strncmp(line, "sp ", 2) == 0)
+		else if (ft_strncmp(line, "pl ", 2) == 0)
+		else if (ft_strncmp(line, "cy ", 2) == 0) */
+		free (line);
+		line = get_next_line(fd);
+	}
+	free (line);
+	index++;
+	if (error_flag == TRUE)
+		return (FALSE);
+	return (TRUE);
 }
 
 int	ft_file_validation(char *file)

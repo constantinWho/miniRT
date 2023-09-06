@@ -19,12 +19,12 @@ typedef struct s_xyz
 } t_xyz;
 
 //ambiant light
-typedef struct	s_ambiant
+typedef struct	s_ambient
 {
 	char	*id;
 	float	ratio;
 	t_color	color;
-} t_ambiant;
+} t_ambient;
 
 typedef struct	s_camera
 {
@@ -92,10 +92,10 @@ typedef struct s_objects
 } t_objects;
 
 //struct for a scene (image that we render)
-//it should have an ambiant and normal light, 1 camera and some objects
+//it should have an ambient and normal light, 1 camera and some objects
 typedef struct s_scene 
 {
-	t_ambiant	ambiant;
+	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
 	t_objects	*objs;

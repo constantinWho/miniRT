@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_numbers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 15:53:53 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/06 16:12:19 by mparasku         ###   ########.fr       */
+/*   Created: 2023/09/06 17:07:54 by mparasku          #+#    #+#             */
+/*   Updated: 2023/09/06 17:23:51 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/miniRT.h"
+#include "../../../include/miniRT.h"
 
-int	main(int ac, char **av) 
+int ft_parse_ratio(char *str, float *ratio)
 {
-	t_rt *rt;
-
-	rt = NULL;
-	if (ac != 2)
+	//to check if str is a float
+	//if yes
+		//convert str to float
+	//check that float is between 0 and 1
+	if (str)
 	{
-		ft_putstr_fd("\033[31mError\n2 args required\n\033[0m", 2);
-		ft_putstr_fd("\033[31m ./miniRT [scenes]\n\033[0m", 2);
-		return (-1);
+		*ratio = 2.0;
+		return (TRUE);
 	}
-	if (!ft_parse(av[1], &rt))
-	{
-		ft_free_rt(rt);
-		return (-1);
-	}
-	//printf("%s\n", rt->scene->light.id);
-	ft_free_rt(rt);
-	return (0);
+	return (FALSE);
 }

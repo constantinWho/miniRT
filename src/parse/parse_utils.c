@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:26:45 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/06 12:32:16 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:48:53 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,27 @@ int ft_error(char *err_msg)
 	return (FALSE);
 }
 
-int ft_is_only_spaces(char *str)
+int ft_count_arr_elements(char **tab)
 {
 	int i;
 
 	i = 0;
-	if (str[0] == '\0')
-		return (FALSE);
-	while (str[i])
+	while (tab[i])
 	{
-		if (str[i] != ' ' && str[i] != '\0')
-			return (FALSE);
 		i++;
 	}
-	return (TRUE);
+	return (i);
+}
+
+void ft_free_2d_arr(char **tab)
+{
+		int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free (tab);
 }
