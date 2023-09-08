@@ -30,7 +30,7 @@ typedef struct	s_camera
 {
 	char	*id;
 	float	fov;
-	t_color	color;
+	//t_color	color;
 	t_xyz	coord;
 	t_xyz	vector; //vector
 } t_camera;

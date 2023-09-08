@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:50:17 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/08 12:27:55 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:59:52 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ int	ft_fill_structs(int fd, t_rt **rt, int index)
 	{
 		if (ft_strncmp(line, "A ", 2) == 0)
 		{
-			if (!ambient_light_parse(line, rt))
+			if (!ft_ambient_light_parse(line, rt))
+				error_flag = TRUE;
+		}
+		if (ft_strncmp(line, "C ", 2) == 0)
+		{
+			if (!ft_camera_parse(line, rt))
 				error_flag = TRUE;
 		}
 /* 		else if (ft_strncmp(line, "C ", 2) == 0)

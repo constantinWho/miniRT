@@ -22,16 +22,24 @@ int ft_elements_num(char *file_str);
 int ft_init_parse_rt(t_rt **rt);
 
 //light_camera_parse.c
-int	ambient_light_parse(char *line, t_rt **rt);
+int	ft_ambient_light_parse(char *line, t_rt **rt);
+int ft_camera_parse(char *line, t_rt **rt);
 
-//parse_numbers.c
+//parse_ratio_color.c
 int ft_parse_ratio(char *str, float *ratio);
 int ft_is_float(char *str);
 float ft_str_to_float(char *str);
 int ft_parse_color(char *str, t_color *colors);
 int is_color(char *str);
 
+//parse_coord_vec.c
+int ft_parse_coord(char *line, t_xyz *coord);
+int ft_parse_vectors(char *line, t_xyz *vectors);
+int ft_is_range(float num);
+int ft_parse_fov(char *line, float *fov);
+
 //ft_free.c
 void ft_free_rt(t_rt *rt);
+void ft_print_all(t_rt *rt);
 
 #endif
