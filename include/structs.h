@@ -38,7 +38,7 @@ typedef struct	s_camera
 typedef struct s_light 
 {
 	char	*id;
-	float ratio;
+	float ratio; //brightness
 	t_xyz coord;
 } t_light;
 

@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:56:54 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/08 13:53:39 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/08 14:43:43 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,35 @@ int ft_camera_parse(char *line, t_rt **rt)
 	(*rt)->scene->camera = camera; 
 	ft_free_2d_arr(tab);
 	return (TRUE);
-	
 }
+
+
+int ft_light_parse(char *line, t_rt **rt)
+{
+	t_light light;
+	char **tab;
+	int i;
+
+	i = 0;
+	if ((*rt)->scene->light.id)
+		return (ft_error("More then 1 light"));
+	tab = ft_split(line, ' ');
+	if (!tab)
+		return (ft_error("Light malloc failed"));
+	if (ft_count_arr_elements(tab) != 3)
+	{
+		ft_free_2d_arr(tab);
+		return (ft_error("L: wrong number of arguments"));
+	}
+	ft_bzero(&light, sizeof(t_light));
+	light.id = "L";
+	if (!ft_parse_coord(tab[1], &light.coord) || !ft_parse_ratio(tab[2], &light.ratio))
+	{
+		ft_free_2d_arr(tab);
+		return (ft_error("L: not valid format"));
+	}
+	(*rt)->scene->light = light; 
+	ft_free_2d_arr(tab);
+	return (TRUE);
+}
+

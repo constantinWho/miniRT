@@ -24,6 +24,7 @@ int ft_init_parse_rt(t_rt **rt);
 //light_camera_parse.c
 int	ft_ambient_light_parse(char *line, t_rt **rt);
 int ft_camera_parse(char *line, t_rt **rt);
+int ft_light_parse(char *line, t_rt **rt);
 
 //parse_ratio_color.c
 int ft_parse_ratio(char *str, float *ratio);
