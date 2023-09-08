@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:56:54 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/06 17:21:52 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:30:24 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ int	ambient_light_parse(char *line, t_rt **rt)
 	}
 	ft_bzero(&amb, sizeof(t_ambient));
 	amb.id = "A";
-	if (ft_parse_ratio(tab[1], &amb.ratio) == TRUE)
-		printf("amb.ratio %f\n", amb.ratio);
-/* 	amb.ratio = //parse_ratio(tab[1]); -chould be between 0.0 and 1.0
-	amb.color = //parse_color(tab[2]);  */
+	if (!ft_parse_ratio(tab[1], &amb.ratio))
+	{
+		ft_free_2d_arr(tab);
+		return (ft_error("A: not valid ratio format"));
+	}
+	if (!ft_parse_color(tab[2], &amb.color))
+	{
+		ft_free_2d_arr(tab);
+		return (ft_error("A: not valid color format"));
+	}
+	(*rt)->scene->ambient = amb;
 	ft_free_2d_arr(tab);
 	return (TRUE);
 }

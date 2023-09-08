@@ -6,7 +6,7 @@
 /*   By: mparasku <mparasku@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:53:53 by mparasku          #+#    #+#             */
-/*   Updated: 2023/09/06 16:12:19 by mparasku         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:31:16 by mparasku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int	main(int ac, char **av)
 		ft_free_rt(rt);
 		return (-1);
 	}
-	//printf("%s\n", rt->scene->light.id);
+/* 	printf("%s\n", rt->scene->ambient.id);
+	printf("%f\n", rt->scene->ambient.ratio);
+	printf("%i\n", rt->scene->ambient.color.r);
+	printf("%i\n", rt->scene->ambient.color.g);
+	printf("%i\n", rt->scene->ambient.color.b); */
 	ft_free_rt(rt);
 	return (0);
 }

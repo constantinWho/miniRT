@@ -26,6 +26,10 @@ int	ambient_light_parse(char *line, t_rt **rt);
 
 //parse_numbers.c
 int ft_parse_ratio(char *str, float *ratio);
+int ft_is_float(char *str);
+float ft_str_to_float(char *str);
+int ft_parse_color(char *str, t_color *colors);
+int is_color(char *str);
 
 //ft_free.c
 void ft_free_rt(t_rt *rt);
